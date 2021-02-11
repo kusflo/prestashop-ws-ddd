@@ -1,0 +1,41 @@
+{
+  "name": "kusflo/prestashop-ws-ddd",
+  "type": "library",
+  "minimum-stability": "dev",
+  "description": "PHP wrapper for PrestaShop Webservices 1.7.x and 1.6.x.",
+  "keywords": [
+    "php",
+    "prestashop",
+    "webservices",
+    "ddd",
+    "hexagonal",
+    "store",
+    "api",
+    "erp"
+  ],
+  "homepage": "https://github.com/kusflo/prestashop-ws-ddd",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Marcos Redondo",
+      "email": "kusflo@gmail.com",
+      "role": "Software Developer"
+    }
+  ],
+  "require-dev": {
+    "phpunit/phpunit": "5.7.20"
+  },
+  "require": {
+    "php": "~7.4"
+  },
+  "autoload": {
+    "psr-4": {
+      "PsWs\\": "src/",
+      "PsWs\\Test\\": "test/"
+    }
+  },
+
+  "scripts": {
+    "phpunit": "phpunit --configuration phpunit.xml"
+  }
+}
