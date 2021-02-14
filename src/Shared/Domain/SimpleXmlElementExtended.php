@@ -17,8 +17,7 @@ class SimpleXmlElementExtended extends SimpleXMLElement
     {
         $node = dom_import_simplexml($this);
         $no = $node->ownerDocument;
-        $defaultNode = $node->childNodes[0];
-        $node->replaceChild($no->createCDATASection($cData), $defaultNode);
+        $node->appendChild($no->createCDATASection($cData));
     }
 
 

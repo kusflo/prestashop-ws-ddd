@@ -18,9 +18,6 @@ use PsWs\Suppliers\Domain\SupplierId;
  **/
 class ProductRepositoryMother implements ProductRepository
 {
-    const PS_SHOP_PATH = 'http://localhost';
-    const PS_WS_AUTH_KEY = 'YJ5F3CQUJTPDXEU1FNCCQVG6NUN6EKZB';
-
 
     public function save(Product $product) : ProductId
     {
@@ -48,4 +45,8 @@ class ProductRepositoryMother implements ProductRepository
     }
 
 
+    public function delete(ProductId $id): void
+    {
+
+    }
 }

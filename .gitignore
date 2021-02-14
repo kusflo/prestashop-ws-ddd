@@ -3,5 +3,8 @@
 composer.phar
 /vendor/
 
-### test file
+
+
+### Files ###
+.env.local
 test.php

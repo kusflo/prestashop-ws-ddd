@@ -15,6 +15,8 @@ interface ProductRepository
 {
     public function save(Product $product): ProductId;
 
+    public function delete(ProductId $id): void;
+
     public function searchById(ProductId $id): ?Product;
 
     public function searchByEan(Ean13 $ean13): ?Product;
