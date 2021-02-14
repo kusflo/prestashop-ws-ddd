@@ -27,7 +27,7 @@ class ProductCreatorTest extends TestCase
     {
         parent::setUp();
         $dotenv = new Dotenv();
-        $dotenv->loadEnv(__DIR__.'/../../../../.env.local');
+        $dotenv->loadEnv(__DIR__.'/../../../../.env');
         //$this->repository = new ProductRepository(true); Real Store
         $this->repository = new ProductRepositoryTest(true);
 
