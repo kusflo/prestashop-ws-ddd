@@ -5,6 +5,7 @@ namespace PsWs\Shared\Infrastructure\PrestaShop;
 
 
 use PrestaShopWebservice;
+use SimpleXMLElement;
 
 /**
  *
@@ -25,7 +26,21 @@ abstract class PrestaShopRepository
     protected function blankXml()
     {
         $url = $_ENV['PS_SHOP_PATH'] . '/api/' . $this->options['resource'] . '?schema=blank';
-        return $this->webService->get(['url' => $url]);
+        return $this->get(['url' => $url]);
     }
+
+    protected function add(array $options): SimpleXMLElement
+    {
+        return $this->webService->add($options);
+    }
+
+
+    protected function get(array $options): SimpleXMLElement
+    {
+        return $this->webService->get($options);
+    }
+
+
+
 
 }

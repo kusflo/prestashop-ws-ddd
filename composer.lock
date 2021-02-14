@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "4e67c481845442379c7b42316b38fe0b",
+    "content-hash": "160e94cba8785f80564d23f77f8bd957",
     "packages": [
         {
             "name": "prestashop/prestashop-webservice-lib",
@@ -1749,7 +1749,9 @@
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
-        "php": "~7.4"
+        "php": "~7.4",
+        "ext-dom": "*",
+        "ext-simplexml": "*"
     },
     "platform-dev": [],
     "plugin-api-version": "2.0.0"

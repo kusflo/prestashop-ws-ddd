@@ -9,6 +9,7 @@ use PsWs\Products\Application\Create\ProductCreator;
 use PsWs\Products\Domain\ProductId;
 use PsWs\Products\Infrastructure\PrestaShop\ProductRepository;
 use PsWs\Test\Products\Application\Create\CreateProductRequestMother;
+use PsWs\Test\Products\Infrastructure\PrestaShop\ProductRepositoryTest;
 use Symfony\Component\Dotenv\Dotenv;
 
 /**
@@ -27,7 +28,9 @@ class ProductCreatorTest extends TestCase
         parent::setUp();
         $dotenv = new Dotenv();
         $dotenv->loadEnv(__DIR__.'/../../../../.env.local');
-        $this->repository = new ProductRepository(true);
+        //$this->repository = new ProductRepository(true); Real Store
+        $this->repository = new ProductRepositoryTest(true);
+
     }
 
     /** @test */

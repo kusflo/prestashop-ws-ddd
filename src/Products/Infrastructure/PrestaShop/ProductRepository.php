@@ -31,7 +31,7 @@ class ProductRepository extends PrestaShopRepository implements InterfaceProduct
     public function save(Product $product): ProductId
     {
         $this->options['postXml'] = $this->addProduct($product);
-        $createdXml = $this->webService->add($this->options);
+        $createdXml = $this->add($this->options);
         $idProduct = intval($createdXml->product->id);
 
         return new ProductId($idProduct);
