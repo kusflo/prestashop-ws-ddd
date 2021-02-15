@@ -7,6 +7,7 @@ namespace PsWs\Test\Products\Application\Create;
 use PHPUnit\Framework\TestCase;
 use PsWs\Products\Application\Create\ProductCreator;
 use PsWs\Products\Domain\ProductId;
+use PsWs\Test\Products\Domain\CreateProductRequestMother;
 use PsWs\Test\Products\Infrastructure\ProductRepositoryMother;
 
 /**

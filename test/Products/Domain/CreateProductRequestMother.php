@@ -1,7 +1,7 @@
 <?php
 
 
-namespace PsWs\Test\Products\Application\Create;
+namespace PsWs\Test\Products\Domain;
 
 
 use PsWs\Products\Application\Create\CreateProductRequest;
