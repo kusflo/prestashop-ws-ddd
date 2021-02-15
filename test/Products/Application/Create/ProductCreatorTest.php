@@ -33,8 +33,8 @@ class ProductCreatorTest extends TestCase
     /** @test */
     public function it_should_create_a_valid_product(): void
     {
-        $creator = new ProductCreator($this->repository, $this->validRequest);
-        $productId = $creator->__invoke();
+        $creator = new ProductCreator($this->repository);
+        $productId = $creator->__invoke( $this->validRequest);
         $this->assertInstanceOf(ProductId::class, $productId);
     }
 
@@ -42,8 +42,8 @@ class ProductCreatorTest extends TestCase
     public function it_should_create_a_invalid_product(): void
     {
         $this->expectException(\Exception::class);
-        $creator = new ProductCreator($this->repository, $this->errorRequest);
-        $productId = $creator->__invoke();
+        $creator = new ProductCreator($this->repository);
+        $productId = $creator->__invoke($this->errorRequest);
     }
 
 

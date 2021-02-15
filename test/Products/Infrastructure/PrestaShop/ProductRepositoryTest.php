@@ -36,8 +36,8 @@ class ProductRepositoryTest extends TestCase
     {
         $request = CreateProductRequestMother::createValidRequest();
 
-        $creator = new ProductCreator($this->repository, $request);
-        $this->productId = $creator->__invoke();
+        $creator = new ProductCreator($this->repository);
+        $this->productId = $creator->__invoke($request);
         $this->assertInstanceOf(ProductId::class, $this->productId);
     }
 

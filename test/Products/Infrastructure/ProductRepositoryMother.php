@@ -10,6 +10,8 @@ use PsWs\Products\Domain\Product;
 use PsWs\Products\Domain\ProductId;
 use PsWs\Products\Domain\ProductRepository;
 use PsWs\Suppliers\Domain\SupplierId;
+use PsWs\Test\Products\Domain\CreateProductRequestMother;
+use PsWs\Test\Products\Domain\ProductMother;
 
 /**
  *
@@ -26,7 +28,11 @@ class ProductRepositoryMother implements ProductRepository
 
     public function searchById(ProductId $id): ?Product
     {
-        return null;
+        if($id->value() === 99){
+            return null;
+        } else {
+            return ProductMother::createValid();
+        }
     }
 
     public function searchByEan(Ean13 $ean13): ?Product

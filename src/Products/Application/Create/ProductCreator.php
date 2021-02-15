@@ -16,19 +16,18 @@ use PsWs\Products\Domain\ProductRepository;
 class ProductCreator
 {
 
-    private ProductRepository $repo;
-    private CreateProductRequest $request;
+    private ProductRepository $repository;
 
-    public function __construct(ProductRepository $repo, CreateProductRequest $request)
+
+    public function __construct(ProductRepository $repository)
     {
-        $this->repo = $repo;
-        $this->request = $request;
+        $this->repository = $repository;
     }
 
-    public function __invoke(): ProductId
+    public function __invoke(CreateProductRequest $request): ProductId
     {
-        $product = ProductFactory::create($this->request);
-        return $this->repo->save($product);
+        $product = ProductFactory::create($request);
+        return $this->repository->save($product);
     }
 
 }
