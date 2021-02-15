@@ -12,16 +12,16 @@ namespace PsWs\Products\Application\Create;
 class CreateProductRequest
 {
 
-    private string $price;
-    private string $manufacturerId;
-    private string $supplierId;
-    private string $ean13;
-    private string $active;
-    private string $dateAdd;
-    private string $dateUpdate;
-    private string $name;
-    private string $description;
-    private string $descriptionShort;
+    protected string $price;
+    protected string $manufacturerId;
+    protected string $supplierId;
+    protected string $ean13;
+    protected string $active;
+    protected string $dateAdd;
+    protected string $dateUpdate;
+    protected string $name;
+    protected string $description;
+    protected string $descriptionShort;
 
     public function __construct(
         string $price, string $manufacturerId, string $supplierId,

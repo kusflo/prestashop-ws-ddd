@@ -24,7 +24,7 @@ class Ean13 extends StringValueObject
     private function checkEan(string $value)
     {
         if(self::EAN13_NUMBERS != strlen($value)){
-            throw new Ean13Exception("The Ean13 " . $value . " is not 13 characters");
+            throw new Ean13Exception( $value);
         }
     }
 

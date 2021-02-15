@@ -3,14 +3,19 @@
 
 namespace PsWs\Products\Infrastructure\PrestaShop;
 
+use PrestaShopWebserviceException;
 use PsWs\Manufacturers\Domain\ManufacturerId;
+use PsWs\Products\Application\Create\CreateProductRequest;
+use PsWs\Products\Application\Find\FindProductResponse;
 use PsWs\Products\Domain\Ean13;
 use PsWs\Products\Domain\Product;
+use PsWs\Products\Domain\ProductFactory;
 use PsWs\Products\Domain\ProductId;
 use PsWs\Products\Domain\ProductRepository as InterfaceProductRepository;
 use PsWs\Shared\Domain\SimpleXmlElementExtended;
 use PsWs\Shared\Infrastructure\PrestaShop\PrestaShopRepository;
 use PsWs\Suppliers\Domain\SupplierId;
+use SimpleXMLElement;
 
 
 /**
@@ -30,9 +35,9 @@ class ProductRepository extends PrestaShopRepository implements InterfaceProduct
 
     public function save(Product $product): ProductId
     {
-        $this->options['postXml'] = $this->addProduct($product);
-        $createdXml = $this->add($this->options);
-        $idProduct = intval($createdXml->product->id);
+        $this->options['postXml'] = $this->productToXml($product);
+        $xml = $this->add($this->options);
+        $idProduct = intval($xml->product->id);
 
         return new ProductId($idProduct);
     }
@@ -44,7 +49,16 @@ class ProductRepository extends PrestaShopRepository implements InterfaceProduct
 
     public function searchById(ProductId $id): ?Product
     {
-        // TODO: Implement searchById() method.
+        try {
+            $this->options['id'] = $id->value();
+            $xml = $this->get($this->options);
+        } catch (PrestaShopWebserviceException $ex) {
+
+            return null;
+        }
+
+        return $this->simpleXmlToProduct($xml);
+
     }
 
     public function searchByEan(Ean13 $ean13): ?Product
@@ -63,7 +77,7 @@ class ProductRepository extends PrestaShopRepository implements InterfaceProduct
     }
 
 
-    private function addProduct(Product $product)
+    private function productToXml(Product $product)
     {
         $xml = $this->blankXml()->asXML();
         $simpleXml = new SimpleXmlElementExtended($xml);
@@ -82,8 +96,27 @@ class ProductRepository extends PrestaShopRepository implements InterfaceProduct
 
     }
 
+    private function simpleXmlToProduct(SimpleXMLElement $simpleXml)
+    {
 
+        $response = new FindProductResponse(
+            (string) $simpleXml->product->id,
+            (string) $simpleXml->product->price,
+            (string) $simpleXml->product->id_manufacturer,
+            (string) $simpleXml->product->id_supplier,
+            (string) $simpleXml->product->ean13,
+            (string) $simpleXml->product->quantity,
+            (string) $simpleXml->product->active,
+            (string) $simpleXml->product->date_add,
+            (string) $simpleXml->product->date_upd,
+            (string) $simpleXml->product->name->language,
+            (string) $simpleXml->product->description->language,
+            (string) $simpleXml->product->description_short->language
+        );
 
+        return ProductFactory::simple($response);
+
+    }
 
 
 }
